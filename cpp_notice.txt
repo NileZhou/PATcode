@@ -1,0 +1,68 @@
+对于C/C++的注意事项:
+
+- scanf和printf消耗的时间比cin和cout少得多
+
+- 不要在同一个程序中使用cout和printf，有时会出现奇怪的问题
+
+- 计算机中，每个[字节]都会有一个地址，是一个unsigned类型的整数
+
+- int 可存储数的大致范围为-2*1e9 -- 2*1e9; long long 可存储数的大致范围为-9*1e18 -- 9*1e18
+
+- float 可存储数的范围为-2**128 -- 2**128, 实际精度为6-7位; double 可存储数的范围为-2**1024 -- 2**1024， 实际精度为15-16位
+
+- 两个float型的浮点数相乘，精度在整数部分就可能已经不准确了，完全不能满足需求。因此，遇到浮点数都用double存储
+
+- 如果给long long 型赋大于2**31-1的初始值，记得在初始值这个数字后面加上LL，否则会出现编译错误
+
+- ASCII码的范围是0-127，大写字母比小写字母ASCII码小32， 'a'的ASCII码为97, '0'的ASCII码为48
+
+- Tab键通过'\t'表示
+
+- 字符串常量可以作为初始值赋值给字符数组, eg: char str1[15] = "wo ai wo jia";注意，仅限于初始化的时候可以这么赋值
+
+- char数组末尾需要加'\0'(ASCII码为0, 代表空字符NULL)，因此长度需要多1位，int数组不需要
+
+- define 可以定义常量， const也可以，但推荐const的写法，因为define 其实可定义任何语句或片段，使用时是将字段原封不动的进行替换，有可能出现错误
+
+- 数组名称本身代表了这个数组第一个元素的地址，所以不需要加上'&', arr == &arr[0]成立
+
+- getchar() 可以识别换行符，gets(数组名)识别换行符作为输入结束，puts(数组名)用来输出一行字符串
+
+- 可使用typedef 有效提高编码效率，eg: typedef long long LL
+
+- <math.h>/ <cmath>这个头文件提供了一些实用的数学函数，eg:
+double fabs(double x)
+double floor(double x) // 向下取整，返回值为double类型
+double ceil(double x) // 向上取整
+double round(double x) // 将x四舍五入进行取整，返回值是double类型
+double pow(double base, double exponent) // base的exponent次方，即base**exponent
+double sqrt(double x) // 返回x的算术平方根
+double log(double x) // 返回x的以[自然对数]为底的对数，想要把底换掉，可以用换底公式
+double sin,cos,tan,asin,acos,atan (double x) // 一堆常用三角与反三角函数
+
+- 函数内部申请的局部变量来自[系统栈]，允许申请的空间较小; 函数外部申请的全局变量来自静态存储区，允许申请的空间更大
+
+- memset(数组名, 值, sizeof(数组名)) 可对数组[按字节]赋值，因此最好赋值为0或-1(二进制补码全为1)  记住加<string.h>，赋值速度比fill函数快
+
+- <string.h>/ <cstring>中的一些常用字符串操作函数, eg:
+size_t strlen(const char* str) //识别一个字符数组中第一个'\0'前的字符数
+int strcmp(const char* str1,const char* str2)//按[字典序]比较字符串,若str1小,返回一负数[不一定是-1]
+char* strcpy(char* dest, char* src) // 把串src复制给dest,包括'\0',返回新的dest
+char* strcat(char* dest, char* src) // 把src接到dest后面,返回新的dest
+
+- int sscanf(const char* s, const char* format, 接受变量的地址) // 使用类似scanf的方式从字符串中读,若成功返回成功读取的变量个数，若失败返回EOF
+- int sprintf(char* str, const char* format, 输出变量) // 把变量以类似printf方式写到str中
+
+- 当数组作为函数参数时，在函数中对数组元素的修改就等于对原数组的修改, 这与普通变量不同
+
+- 指针变量可以进行加减法，对int *p而言, p+1代表p所指的int型变量的下一个int变量的地址
+- 两个int型指针相减,等价于在求两个指针地址之间差了几个int
+
+- 使用指针变量时一定要先初始化，否则里面存放的地址是随机的
+
+- 对引用变量的操作就等于对原变量的操作，引用并不是取地址的意思
+
+- 结构体里能定义除了自己本身之外的任何数据类型(自己类型的指针变量除外)
+
+
+
