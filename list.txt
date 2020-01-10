@@ -1,0 +1,19 @@
+用N(note)代表《算法笔记》
+用T(train)代表《算法笔记：上机训练实战指南》
+用C(codeup)代表codeup上的习题: http://codeup.cn/ (此为《算法笔记》配套网站)
+用A(advanced level) 代表PAT甲级题
+第二列为题目名
+第三列为对应代码文件名(可多选,'='作为间隔符)
+第四列为对应笔记(可选)
+N P41 | bubble sort | bubble_sort.cpp | 
+C 26339 | 字符串逆序存放 | c26339.cpp | 
+C 26340 | 复制字符串中的元音字母 | c26340.cpp |
+C 1269 | C语言10.1 | c1269.cpp |
+C 1278 | C语言10.10 | c1278.cpp |
+C 1283 | C语言10.15 | c1283.cpp |
+N P115 | full permutation | full_perm.cpp | dfs中存储与输出的技巧与注意点
+A 1025 | PAT Rankings | a1025.cpp | 着重考察排序的双重标准，看清题的最后一句!
+N P117 | n皇后与回溯 | n_queue.cpp | 对角线冲突处的剪枝需要掌握
+C 1126 | 看电视 | c1126.cpp | 区间贪心
+A 1093 | 有几个PAT | a1093.cpp |
+

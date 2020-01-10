@@ -1,0 +1,56 @@
+#include<cstdio>
+#include<cstdlib>
+
+const int N = 11; // 阶乘时间复杂度
+
+bool tags[N] = {false}; // tags[i] == true 代表i+1已填
+int res[N];
+
+void full_permutation(int n, int level) {
+    if (n == level) {
+	for (int i=0; i<n; ++i) {
+        
+        printf("\n");
+        return;
+    }
+    for (int i=0; i<n; ++i) {
+        if (!tags[i]) {
+            printf("%d ", i+1);
+            tags[i] = true;
+            full_permutation(n, level+1);
+            tags[i] = false;
+        }
+    }
+}
+
+
+void perm(int index, int n){
+    if (index == n) {
+        for (int i=0; i<n; ++i) {
+            printf("%d ", res[i]);
+        }
+        printf("\n");
+        return;
+    }
+
+    for (int i=0; )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+    full_permutation(4, 0);
+
+    return 0;
+}
