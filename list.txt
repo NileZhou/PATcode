@@ -16,4 +16,4 @@ A 1025 | PAT Rankings | a1025.cpp | 着重考察排序的双重标准，看清�
 N P117 | n皇后与回溯 | n_queue.cpp | 对角线冲突处的剪枝需要掌握
 C 1126 | 看电视 | c1126.cpp | 区间贪心
 A 1093 | 有几个PAT | a1093.cpp |
-
+A 1009 | Product of Polynomials | a1009.cpp | 
