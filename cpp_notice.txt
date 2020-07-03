@@ -108,9 +108,30 @@ asin(x), 当x存放1时 // 有可能x实际存储一个>1的数
 acos(x), 当x存放-1时 // 有可能x实际存储一个<-1的数
 
 - 对于c++中的sort中的cmp函数. bool cmp(类型 a, 类型 b) return a < b是升序排序， a > b 是降序排序
-=======
-- 结构体里能定义除了自己本身之外的任何数据类型(自己类型的指针变量除外)
+
+STL:
+queue:
+back() 返回最后一个元素
+front() 返回第一个元素
+pop() 删除第一个元素
+push() 在末尾加入一个元素
+size() 返回队列中元素个数
+
+list(链表):
+
+deque(双端队列):
+front()  第一个元素
+back()  最后一个元素
+size()
+push_back(e) 在末尾插入元素 
+pop_back() 删除末尾位置的元素
+push_front(e) 在开头位置插入元素
+pop_front() 删除开头位置的元素
 
 
->>>>>>> f1f9ca73b9d06cbeb9567daa8482770bbc7571f7
+stack(栈):
+push()
+pop()
+top()
+size()
 
