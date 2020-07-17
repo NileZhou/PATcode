@@ -1,36 +1,63 @@
-#include<cstdio>
 #include<iostream>
 #include<algorithm>
+#include<vector>
 #include<string>
-
 
 using namespace std;
 
-const int N = 1e4;
-
 struct node {
-    int time;
-    int ptime; // process time
-}data[N];
+    double time, ptime; // process time
+};
 
-int stime = 8 * 3600, etime = 17 * 3600;
+bool cmp(node a, node b) {
+    return a.time < b.time;
+}
 
+/**
+ * out of main() can't assign value, or the compiler will throw error
+ */
 
 int main() {
-    int n, k;
-    int h, m, sec;
-    char s[10]; // 这里改为string的话，sscanf那里会报错
-
+    int n, k, ncust, h, m, sec, deal_cnt=0;
+    double stime=8*60, etime=17*60, res=0, tail_times[100]={8*60}, wait_time=0;
+    string s;
+    vector<node> nodes;
+    
     cin >> n >> k;
     for (int i=0; i<n; ++i) {
-        cin >> s >> data[i].ptime;
-        sscanf(s, "%d:%d:%d", &h, &m, &sec);
-        data[i].time = h * 24 * 3600 + m * 60 + sec;
+        node customer;
+        cin >> s >> customer.ptime;
+        sscanf(s.c_str(), "%d:%d:%d", &h, &m, &sec);
+        customer.time = h * 60.0 + m + sec / 60.0;
+        if (customer.time < etime) {
+            nodes.push_back(customer);
+        }
+    }
+    ncust = nodes.size();
+    sort(nodes.begin(), nodes.end(), cmp); // sort a vector
+    for (int i=0; i<ncust; ++i) {
+        int min_i=0 , min_time=tail_times[0];
+        for (int j=1; j<k; ++j) {
+            if (tail_times[j] < min_time) {
+                min_time = tail_times[j];
+                min_i = j;
+            }
+        }
+        if (min_time < etime) { // deal
+            if (nodes[i].time >= min_time) { // dosen't need to wait
+                tail_times[min_i] = nodes[i].time + nodes[i].ptime;
+            } else {
+                wait_time += min_time - nodes[i].time;
+                tail_times[min_i] += nodes[i].ptime;
+            }
+            ++deal_cnt;
+        } else {
+            break;
+        }
     }
 
-    for (int i=0; i<n; ++i) {
-        printf("%d ", data[i].time);
-    }
+    printf("%.1lf\n", wait_time / deal_cnt);
 
     return 0;
 }
+

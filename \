@@ -1,0 +1,124 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<string>
+
+using namespace std;
+
+const int N=501;
+const int INF=0x7fffffff;
+
+int G[N][N];
+int cap[N]={0}, dis[N];
+bool vis[101]={false};
+
+vector<int> path, tmp_path; // path
+vector<int> pre[N];
+
+int ch=0;
+int op1=INF, op2=INF; // the second and third optimize criterion
+
+void dijkstra(int src, int n) {
+    fill(dis, dis+n, INF);
+    dis[src] = 0;
+    
+    for (int i=0; i<n+1; ++i) {
+        int u=-1, min_d=INF;
+        for (int v=0; v<n+1; ++v) {
+            if (vis[v] == false && dis[v] < min_d) {
+                min_d = dis[v];
+                u = v;
+            }
+        }
+        if (u == -1) return;
+        vis[u] = true;
+        for (int v=0; v<n+1; ++v) {
+            if (vis[v] == false && G[u][v] < INF) {
+                if (dis[u] + G[u][v] < dis[v]) {
+                    pre[v].clear();
+                    pre[v].push_back(u);
+                    dis[v] = dis[u] + G[u][v];
+                } else if (dis[u] + G[u][v] == dis[v]) {
+                    pre[v].push_back(u);
+                }
+            }
+        }
+    }
+}
+
+void dfs(int dest, int n) {
+    double bring=0, reserve=0;
+
+    int u = dest;
+    while (pre[u].size() != 0) {
+        for (int j=0; j<pre[u].size(); ++j) {
+            tmp_path.push_back(pre[u][j]);
+            dfs(pre[u][j], n);
+            tmp_path.pop_back();
+        }
+    }
+
+    if (pre[u].size() == 0) {
+        int m = tmp_path.size();
+        for (int i=m-1; i>=0; --i) {
+            int node = tmp_path[i];
+            if (cap[node] > ch) {
+                reserve += cap[node] - ch;
+            } else {
+                reserve = reserve + cap[node] - ch;
+                if (reserve < 0) {
+                    reserve = 0;
+                    bring -= reserve;
+                }
+            }
+        }
+    }
+
+    if (bring < op1) {
+        path = tmp_path;
+        op1 = bring;
+        op2 = reserve;
+    } else if (bring == op1) {
+        if (reserve < op2) {
+            path = tmp_path;
+            op2 = reserve;
+        }
+    }
+}
+
+// first rule: shortest path from PBMC to station
+// second rule: least bicycle to send to adjust this way: the sum of nodes * half_cnt - cur_num
+int main() {
+#ifdef ONLINE_JUDGE // at most OJ, it will be set true
+#else // then, it will be compiled
+    freopen("tst.txt", "r", stdin);
+#endif
+    int n, sp, m, si, sj, tij;
+    fill_n(&G[0][0], sizeof(G) / sizeof(**G), INF);
+
+    cin >> ch >> n >> sp >> m;
+    ch = int()(ch / 2);
+    for (int i=1; i<=n; ++i) {
+        cin >> cap[i];
+    }
+    for (int i=0; i<m; ++i) {
+        cin >> si >> sj >> tij;
+        G[si][sj] = G[sj][si] = tij;
+    }
+    // find all shortest paths from nodes 0 --> sp
+    dijkstra(0, n);
+
+    // compute the least sum of paths
+    tmp_path.push_back(sp);
+    dfs(sp, n);
+    // compute the least recycle path
+    
+    int k=path.size();
+    cout << op1 << " ";
+    for (int i=k-1; k>0; --k) {
+        cout << path[i] << "->";
+    }
+    cout << path[0] << " " << op2 << endl;
+
+    return 0;
+}

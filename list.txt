@@ -19,3 +19,5 @@ A 1093 | 有几个PAT | a1093.cpp |
 A 1009 | Product of Polynomials | a1009.cpp | 
 kmp | kmp.cpp
 A 1014 | 模拟 | 很考建模能力和读题能力 是好题
+A 1016 同样是模拟题
+A 1018 | 图论 | a1018.cpp | 考察最短路，搜索与优化，综合好题!

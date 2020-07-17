@@ -135,3 +135,17 @@ pop()
 top()
 size()
 
+
+vector:
+push_back()
+pop_back()
+
+
+map:
+mp[a] = "asd"  赋值方式和python很像
+
+
+对数组里所有格子赋值:
+使用<algorithm>里的std:fill_n
+一维数组: fill_n(arr, n, val)
+二维数组: fill_n(&arr[0][0], sizeof(arr) / sizeof(**arr), val)
