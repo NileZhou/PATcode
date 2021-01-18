@@ -1,3 +1,9 @@
+练代码能力最有效的办法是做模拟题
+- josephus problem
+josephus.cpp
+
+
+
 用N(note)代表《算法笔记》
 用T(train)代表《算法笔记：上机训练实战指南》
 用C(codeup)代表codeup上的习题: http://codeup.cn/ (此为《算法笔记》配套网站)
@@ -19,3 +25,5 @@ A 1093 | 有几个PAT | a1093.cpp |
 A 1009 | Product of Polynomials | a1009.cpp | 
 kmp | kmp.cpp
 A 1014 | 模拟 | 很考建模能力和读题能力 是好题
+
+

@@ -56,6 +56,10 @@ int strcmp(const char* str1,const char* str2)//按[字典序]比较字符串,若
 char* strcpy(char* dest, char* src) // 把串src复制给dest,包括'\0',返回新的dest
 char* strcat(char* dest, char* src) // 把src接到dest后面,返回新的dest
 
+- <string>
+string 转换为char[] : obj.c_str()
+char[] 转换为string: string(obj2)
+
 - int sscanf(const char* s, const char* format, 接受变量的地址) // 使用类似scanf的方式从字符串中读,若成功返回成功读取的变量个数，若失败返回EOF
 - int sprintf(char* str, const char* format, 输出变量) // 把变量以类似printf方式写到str中
 
@@ -134,4 +138,3 @@ push()
 pop()
 top()
 size()
-
